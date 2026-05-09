@@ -1,0 +1,53 @@
+import { initDatabase } from "@/lib/database";
+import { router } from "expo-router";
+import { useEffect } from "react";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
+
+export default function Index() {
+  useEffect(() => {
+    try {
+      initDatabase();
+    } catch (error) {
+      Alert.alert("Database Error", "Failed to initialize database");
+    }
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>My Notes App</Text>
+      <Text style={styles.subtitle}>Welcome user</Text>
+
+      <Pressable style={styles.button} onPress={() => router.push("/notes")}>
+        <Text style={styles.buttonText}>Open Notes</Text>
+      </Pressable>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+  },
+  title: {
+    fontSize: 34,
+    fontWeight: "700",
+    marginBottom: 12,
+  },
+  subtitle: {
+    fontSize: 14,
+    marginBottom: 12,
+  },
+  button: {
+    backgroundColor: "#1f3b7e",
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "600",
+  },
+});
