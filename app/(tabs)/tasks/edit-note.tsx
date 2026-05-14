@@ -33,7 +33,7 @@ export default function EditTaskScreen() {
 
       updateTask(Number(params.id), title, description, status);
       Alert.alert("Success", `Task updated successfully.`);
-      router.replace("/notes");
+      router.replace("/(tabs)/tasks/notes");
     } catch (error) {
       Alert.alert(
         "Update Error",
